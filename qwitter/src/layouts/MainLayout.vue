@@ -41,7 +41,58 @@
     </q-drawer>
 
     <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
-      <!-- drawer content -->
+      <q-input
+        rounded
+        outlined
+        v-model="searchText"
+        @submit="doSearch"
+        dense
+        placeholder="Search ..."
+        class="q-ma-md"
+      >
+        <template v-slot:prepend>
+          <q-icon name="search" />
+        </template>
+        <template v-slot:append v-if="searchText.length > 0">
+          <q-icon name="close" @click="clearSearch" class="cursor-pointer" />
+        </template>
+      </q-input>
+
+      <q-list padding separator>
+        <q-item class="q-pa-md">
+          <q-item-section>
+            <q-item-label overline class="text-grey">Education</q-item-label>
+            <q-item-label class="text-weight-bold"
+              >Something amazing happened!</q-item-label
+            >
+            <q-item-label caption lines="3"
+              >Secondary line text. Lorem ipsum dolor sit amet, consectetur
+              adipiscit elit.</q-item-label
+            >
+          </q-item-section>
+          <q-item-section side top>
+            <q-item-label caption>5 min ago</q-item-label>
+            <!-- <q-icon name="star" color="yellow" /> -->
+          </q-item-section>
+        </q-item>
+
+        <q-item class="q-pa-md">
+          <q-item-section>
+            <q-item-label overline class="text-grey">Education</q-item-label>
+            <q-item-label class="text-weight-bold"
+              >Something amazing happened!</q-item-label
+            >
+            <q-item-label caption lines="3"
+              >Secondary line text. Lorem ipsum dolor sit amet, consectetur
+              adipiscit elit.</q-item-label
+            >
+          </q-item-section>
+          <q-item-section side top>
+            <q-item-label caption>5 min ago</q-item-label>
+            <!-- <q-icon name="star" color="yellow" /> -->
+          </q-item-section>
+        </q-item>
+      </q-list>
     </q-drawer>
 
     <q-page-container>
@@ -50,21 +101,22 @@
   </q-layout>
 </template>
 
-<script>
+<script setup lang="ts">
 import { ref } from 'vue';
 
-export default {
-  setup() {
-    const leftDrawerOpen = ref(false);
-    const rightDrawerOpen = ref(false);
+const leftDrawerOpen = ref(false);
+const rightDrawerOpen = ref(false);
+const searchText = ref('');
 
-    return {
-      leftDrawerOpen,
-      rightDrawerOpen,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value;
-      },
-    };
-  },
+const toggleLeftDrawer = () => {
+  leftDrawerOpen.value = !leftDrawerOpen.value;
+};
+
+const clearSearch = () => {
+  searchText.value = '';
+};
+
+const doSearch = () => {
+  console.log(`[doSearch] Searching for ${searchText.value}...`);
 };
 </script>
