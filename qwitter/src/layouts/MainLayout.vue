@@ -5,7 +5,13 @@
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title class="text-weight-bold">
-          <span class="q-pl-xs">Quasar Twitter</span>
+          <span class="q-pl-xs gt-sm">Quasar Twitter</span>
+          <q-icon
+            name="fa-solid fa-dove lt-md"
+            size="sm"
+            color="light-blue-5"
+            class="q-pa-sm header-mobile-logo"
+          />
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
@@ -120,3 +126,12 @@ const doSearch = () => {
   console.log(`[doSearch] Searching for ${searchText.value}...`);
 };
 </script>
+
+<style>
+.header-mobile-logo {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+</style>
