@@ -5,16 +5,39 @@
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title class="text-weight-bold">
-          <q-avatar>
-            <img src="/icons/favicon-96x96.png" />
-          </q-avatar>
-          <span class="q-pl-md">Quasar Twitter</span>
+          <span class="q-pl-xs">Quasar Twitter</span>
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
 
-    <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
-      <!-- drawer content -->
+    <q-drawer
+      show-if-above
+      v-model="leftDrawerOpen"
+      side="left"
+      :width="280"
+      bordered
+    >
+      <q-icon name="fa-solid fa-dove" size="md" color="light-blue-5 q-pa-md" />
+
+      <q-list>
+        <q-item to="/" clickable v-ripple>
+          <q-item-section avatar class="q-pl-sm">
+            <q-icon name="fa-solid fa-house-user" />
+          </q-item-section>
+
+          <q-item-section class="text-h6 text-weight-bold">Home</q-item-section>
+        </q-item>
+
+        <q-item to="/about" clickable v-ripple>
+          <q-item-section avatar class="q-pl-sm">
+            <q-icon name="fa-solid fa-clipboard-question" />
+          </q-item-section>
+
+          <q-item-section class="text-h6 text-weight-bold"
+            >About</q-item-section
+          >
+        </q-item>
+      </q-list>
     </q-drawer>
 
     <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
@@ -33,9 +56,11 @@ import { ref } from 'vue';
 export default {
   setup() {
     const leftDrawerOpen = ref(false);
+    const rightDrawerOpen = ref(false);
 
     return {
       leftDrawerOpen,
+      rightDrawerOpen,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
