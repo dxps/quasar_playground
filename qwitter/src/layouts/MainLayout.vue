@@ -108,23 +108,23 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from 'vue'
 
-const leftDrawerOpen = ref(false);
-const rightDrawerOpen = ref(false);
-const searchText = ref('');
+const leftDrawerOpen = ref(false)
+const rightDrawerOpen = ref(false)
+const searchText = ref('')
 
 const toggleLeftDrawer = () => {
-  leftDrawerOpen.value = !leftDrawerOpen.value;
-};
+  leftDrawerOpen.value = !leftDrawerOpen.value
+}
 
 const clearSearch = () => {
-  searchText.value = '';
-};
+  searchText.value = ''
+}
 
 const doSearch = () => {
-  console.log(`[doSearch] Searching for ${searchText.value}...`);
-};
+  console.log(`[doSearch] Searching for ${searchText.value}...`)
+}
 </script>
 
 <style>
