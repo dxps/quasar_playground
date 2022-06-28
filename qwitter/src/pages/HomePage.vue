@@ -125,7 +125,7 @@ let addNewQweet = () => {
     date: Date.now(),
   }
   qweets.value.unshift(qweet)
-  qweets
+  newQweetContent.value = ''
 }
 </script>
 
