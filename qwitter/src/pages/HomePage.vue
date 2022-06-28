@@ -34,8 +34,8 @@
 
     <q-separator size="10px" class="divider" />
 
-    <q-list>
-      <q-item class="q-py-md">
+    <q-list separator>
+      <q-item class="q-py-md" v-for="qweet in qweets" :key="qweet.date">
         <q-item-section avatar top>
           <q-avatar>
             <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
@@ -48,11 +48,7 @@
             <span class="text-grey-6 q-pl-md">@janet_one</span>
           </q-item-label>
           <q-item-label class="qweet-content">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.<br />
-
-            Quod consectetur, tempora quis adipisci cumque corrupti hic quas
-            maxime itaque pariatur, explicabo distinctio animi laudantium
-            debitis aliquid dolorum nulla iste minus?
+            {{ qweet.content }}
           </q-item-label>
 
           <div class="row justify-between q-mt-sm qweet-icons">
@@ -87,7 +83,9 @@
           </div>
         </q-item-section>
 
-        <q-item-section side top> 1 min ago </q-item-section>
+        <q-item-section side top>
+          {{ relativeDate(qweet.date) }}
+        </q-item-section>
       </q-item>
     </q-list>
   </q-page>
@@ -95,8 +93,26 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { formatDistance } from 'date-fns'
 
 let newTweetContent = ref('')
+let qweets = ref([
+  {
+    content: `Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+
+            Quod consectetur, tempora quis adipisci cumque corrupti hic quas maxime itaque pariatur, explicabo distinctio animi laudantium             debitis aliquid dolorum nulla iste minus?`,
+    date: 1656431608677,
+  },
+  {
+    content:
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod consectetur, tempora quis adipisci cumque corrupti hic quas maxime itaque pariatur.',
+    date: 1656430600677,
+  },
+])
+
+let relativeDate = (value: number) => {
+  return formatDistance(value, new Date())
+}
 </script>
 
 <style lang="scss">
