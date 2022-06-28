@@ -75,6 +75,7 @@
               size="sm"
             />
             <q-btn
+              @click="deleteQweet(qweet)"
               color="grey-7"
               icon="fa-solid fa-trash"
               flat
@@ -95,6 +96,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { formatDistance } from 'date-fns'
+import Qweet from '../models/qweet'
 
 // Data
 
@@ -126,6 +128,13 @@ let addNewQweet = () => {
   }
   qweets.value.unshift(qweet)
   newQweetContent.value = ''
+}
+
+let deleteQweet = (qweet: Qweet) => {
+  let idx = qweets.value.findIndex(
+    (q) => q.date === qweet.date && q.date === qweet.date
+  )
+  qweets.value.splice(idx, 1)
 }
 </script>
 
