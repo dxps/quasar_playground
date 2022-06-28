@@ -4,7 +4,7 @@
       <div class="col">
         <q-input
           bottom-slots
-          v-model="newTweetContent"
+          v-model="newQweetContent"
           placeholder="What's happening?"
           counter
           maxlength="280"
@@ -20,13 +20,14 @@
       </div>
       <div class="col col-shrink">
         <q-btn
+          @click="addNewQweet"
           unelevated
           rounded
           color="primary"
           label=" Q Tweet "
           no-caps
           no-wrap
-          :disable="!newTweetContent"
+          :disable="!newQweetContent"
           class="q-mb-lg"
         />
       </div>
@@ -95,7 +96,9 @@
 import { ref } from 'vue'
 import { formatDistance } from 'date-fns'
 
-let newTweetContent = ref('')
+// Data
+
+let newQweetContent = ref('')
 let qweets = ref([
   {
     content: `Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -110,8 +113,19 @@ let qweets = ref([
   },
 ])
 
+// Methods
+
 let relativeDate = (value: number) => {
   return formatDistance(value, new Date())
+}
+
+let addNewQweet = () => {
+  const qweet = {
+    content: newQweetContent.value,
+    date: Date.now(),
+  }
+  qweets.value.unshift(qweet)
+  qweets
 }
 </script>
 
